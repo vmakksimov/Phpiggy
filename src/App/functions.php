@@ -10,3 +10,7 @@ declare(strict_types= 1);
     echo "</pre>";
     die();
 }
+
+function e(mixed $value){
+   return htmlspecialchars((string) $value);
+}
