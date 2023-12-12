@@ -6,13 +6,16 @@ declare(strict_types= 1);
 namespace App\Services;
 
 use Framework\Validator;
-use function Framework\validate;
+use Framework\Rules\RequiredRule;
+// use function Framework\validate;
 
 class ValidatorService{
     private Validator $validator;
 
     public function __construct(){
         $this->validator = new Validator();
+
+        $this->validator->add('required', new RequiredRule());
     }
 
     public function validateRegister(array $formData){
