@@ -9,22 +9,37 @@ use Framework\Contracts\RuleInterface;
 class Validator{
 
     private array $rules = [];
+    
 
     public function add(string $alias, RuleInterface $rule){
         $this->rules[$alias] = $rule;
     }
 
     public function validate(array $formData, array $fields){
+
+        $errors = [];
         
         foreach($fields as $fieldName => $rules){
             foreach($rules as $rule){
+                echo "<br>";
+                echo $rule;
                 $ruleValidator = $this->rules[$rule];
+                print_r($formData);
+              
 
                 if ($ruleValidator->validate($formData, $fieldName, [])) {
                     continue;
             }
             
-                echo 'Error';
+                $errors[$fieldName][] = $ruleValidator->getMessage(
+                    $formData,
+                    $fieldName,
+                    []
+                );
     }
-}
+        };
+        if (count($errors)){
+            dd($errors);
+
+        }
 }};
