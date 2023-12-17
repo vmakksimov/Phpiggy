@@ -13,6 +13,9 @@ class RequiredRule implements RuleInterface {
     }
 
     public function getMessage(array $data, string $field, array $params) : string{
+        if ($field === 'email'){
+            return 'You must input an email';
+        }
         return "This field si required.";
     }
 }
