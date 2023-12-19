@@ -9,6 +9,7 @@ use PDO, PDOException, PDOStatement;
 class Database {
 
     private PDO $connection;
+    private PDOStatement $statement;
     public function __construct(string $driver, array $config, $username, $password){
         $config = http_build_query(data: $config, arg_separator: ';');
         $dsn = "{$driver}:{$config}";
@@ -19,7 +20,8 @@ class Database {
         }
     }
 
-    public function query(string $query){
-        $this->connection->query($query);
+    public function query(string $query, array $params=[]){
+        $this->statement = $this->connection->prepare($query);
+        $this->statement->execute($params);
     }
 }
