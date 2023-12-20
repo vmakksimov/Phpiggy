@@ -25,6 +25,9 @@ class RegisterController {
 
     public function authRegister(){
         $this->validatorService->validateRegister($_POST);
+        $this->userService->isEmailTaken($_POST["email"]);
+        $this->userService->create($_POST);
+        redirectTo('/');
     }
 }
 

@@ -7,7 +7,7 @@ use Framework\Contracts\RuleInterface;
 
 class MatchField implements RuleInterface{
     public function validate(array $data, string $field, array $params) : bool {
-        $fieldOne = $data['field'];
+        $fieldOne = $data[$field];
         $fieldTwo = $data[$params[0]];
 
         return $fieldOne === $fieldTwo;

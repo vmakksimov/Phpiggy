@@ -71,16 +71,7 @@
         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         placeholder=""
       />
-      <?php if (array_key_exists('password', $errors)) : ?>
-        <div style="color: red">
-          <?php echo e($errors['password'][0]); ?>
-        </div>
-      <?php  endif; ?>
-      <?php if (array_key_exists('confirmPassword', $errors)) : ?>
-        <div style="color: red">
-          <?php echo e($errors['confirmPassword'][0]); ?>
-        </div>
-      <?php  endif; ?>
+      
     </label>
     <!-- Confirm Password -->
     <label class="block">
