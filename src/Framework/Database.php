@@ -35,4 +35,8 @@ class Database {
     public function find(){
         return $this->statement->fetch();
     }
+
+    public function id(){
+        return $this->connection->lastInsertId();
+    }
 }

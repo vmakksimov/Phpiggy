@@ -35,14 +35,17 @@ class UserService {
 
             ]
         );
+
+        session_regenerate_id();
+
+        $_SESSION['user'] = $this->db->id();
     }
 
     public function login(array $formData){
         $user = $this->db->query(
             "SELECT * FROM users WHERE email= :email", [
-                "email"=> $formData["email"],
-            ]
-        )->find();
+                'email'=> $formData['email']
+            ])->find();
 
         $passwordsMatch = password_verify($formData["password"], $user["password"] ?? '');
 
@@ -50,9 +53,16 @@ class UserService {
             throw new CustomException(['password'=> ['Invalid credentials']]);
         }
 
+        session_regenerate_id();
+
         $_SESSION['user'] = $user['id'];
 
 
+    }
+
+    public function logout(){
+        unset($_SESSION['user']);
+        session_regenerate_id();
     }
 
     

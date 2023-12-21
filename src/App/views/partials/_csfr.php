@@ -1,0 +1,1 @@
+<input value="<?php echo e($csfrToken); ?>" name="token" type="hidden" />
